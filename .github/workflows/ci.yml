@@ -78,3 +78,19 @@ jobs:
 
       - name: Run rubocop
         run: bundle exec rubocop
+
+  # 処理③ eslint(& prettier) のルール違反がないことをチェック
+  eslint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install packages
+        run: npm install
+
+      - name: Run lint
+        run: npm run lint
