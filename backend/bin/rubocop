@@ -1,2 +1,3 @@
 #!/bin/bash
+cd /Users/naomichi/dev/daily-kpt
 docker compose exec -T rails bundle exec rubocop -c .rubocop.yml "$@"
