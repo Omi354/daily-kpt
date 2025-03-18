@@ -2,9 +2,13 @@ class Api::V1::KptsController < Api::V1::BaseController
   before_action :authenticate_user!
 
   def create
-    kpt = current_user.kpts.create!(kpt_params)
-    render json: { message: "Success", kpt: kpt }, status: :created
-    debugger
+    kpt = current_user.kpts.new(kpt_params)
+    if kpt.save
+      render json: { message: "Success", kpt: kpt }, status: :created
+    else
+      debugger
+      render json: { message: kpt.errors.full_messages.to_sentence }, status: :unprocessable
+    end
   end
 
   private
