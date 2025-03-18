@@ -6,7 +6,6 @@ class Api::V1::KptsController < Api::V1::BaseController
     if kpt.save
       render json: { message: "Success", kpt: kpt }, status: :created
     else
-      debugger
       render json: { message: kpt.errors.full_messages.to_sentence }, status: :unprocessable
     end
   end

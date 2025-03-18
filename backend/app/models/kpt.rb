@@ -22,7 +22,7 @@
 #
 class Kpt < ApplicationRecord
   validates :date, presence: true
-  validates :date, uniqueness: { scope: :user_id, message: "already has a KPT entry for this day" }
+  validates :date, uniqueness: { scope: :user_id, message: "この日のKPTのはすでに登録されています" }
   validates :keep, presence: true
   validates :problem, presence: true
   validates :try, presence: true
