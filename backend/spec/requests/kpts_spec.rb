@@ -62,7 +62,7 @@ RSpec.describe "Kpts", type: :request do
     end
   end
 
-  describe "GET /api/vi/kpts/:date" do
+  describe "GET /api/v1/kpts/:date" do
     let(:kpt) { create(:kpt, user: user) }
 
     context "認証情報がヘッダーに記載された場合" do
