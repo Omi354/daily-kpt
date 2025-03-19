@@ -9,17 +9,17 @@ RSpec.describe Kpt, type: :model do
     end
 
     it "正常に保存できる" do
-      expect{kpt.save}.to change(Kpt, :count).by(1)
+      expect { kpt.save }.to change { Kpt.count }.by(1)
     end
   end
 
   context "userがnilの場合" do
     let(:kpt) { build(:kpt, user: nil) }
-  
+
     it "バリデーションエラーになる" do
       expect(kpt).not_to be_valid
     end
-  
+
     it "エラーメッセージが設定される" do
       kpt.valid?
       expect(kpt.errors[:user]).to include("を入力してください")
@@ -42,11 +42,11 @@ RSpec.describe Kpt, type: :model do
 
     context "dateが重複している場合" do
       let(:user) { create(:user) }
-      let!(:existing_kpt) { create(:kpt, date: Date.today, user: user) }
-      let(:kpt) { build(:kpt, date: Date.today, user: user) }
+      let!(:existing_kpt) { create(:kpt, date: Time.zone.today, user: user) }
+      let(:kpt) { build(:kpt, date: Time.zone.today, user: user) }
 
       it "バリデーションエラーになる" do
-        expect { kpt.save }.not_to change(Kpt, :count)
+        expect { kpt.save }.not_to change { Kpt.count }
       end
 
       it "エラーメッセージが設定される" do
@@ -54,7 +54,7 @@ RSpec.describe Kpt, type: :model do
         expect(kpt.errors[:date]).to include("この日のKPTのはすでに登録されています")
       end
     end
-  
+
     context "keepがnilの場合" do
       let(:kpt) { build(:kpt, keep: nil) }
 

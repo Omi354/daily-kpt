@@ -11,7 +11,8 @@ class Api::V1::KptsController < Api::V1::BaseController
   end
 
   private
-  def kpt_params
-    params.require(:kpt).permit(:date, :keep, :problem, :try)
-  end
+
+    def kpt_params
+      params.require(:kpt).permit(:date, :keep, :problem, :try)
+    end
 end
