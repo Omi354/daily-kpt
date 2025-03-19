@@ -17,7 +17,10 @@ const Index: NextPage = () => {
 
   const tileContent = ({ date, view }: { date: Date; view: string }) => {
     if (view === 'month') {
-      const dateString = date.toISOString().split('T')[0]
+      const year = date.getFullYear()
+      const month = (date.getMonth() + 1).toString().padStart(2, '0') // 月は0から始まるので+1
+      const day = date.getDate().toString().padStart(2, '0')
+      const dateString = `${year}-${month}-${day}` // YYYY-MM-DD形式
 
       if (kptDates.includes(dateString)) {
         return <span style={{ color: 'red', fontWeight: 'bold' }}>●</span>
