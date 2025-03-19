@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      kpt: KPT
+    attributes:
+      kpt:
+        date: 日付
+        keep: Keep
+        problem: Problem
+        try: Try
+        user: ユーザー
+    errors:
+      models:
+        kpt:
+          attributes:
+            date:
+              taken: "この日のKPTはすでに登録されています"

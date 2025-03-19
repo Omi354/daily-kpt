@@ -51,7 +51,7 @@ RSpec.describe Kpt, type: :model do
 
       it "エラーメッセージが設定される" do
         kpt.valid?
-        expect(kpt.errors[:date]).to include("この日のKPTのはすでに登録されています")
+        expect(kpt.errors[:date]).to include("この日のKPTはすでに登録されています")
       end
     end
 
