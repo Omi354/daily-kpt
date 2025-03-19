@@ -78,12 +78,12 @@ RSpec.describe "Kpts", type: :request do
         end
 
         it "適切なメッセージが返る" do
-          body = JSON.parse(response.body)
+          body = response.parsed_body
           expect(body["message"]).to eq("Success")
         end
 
         it "適切なkptオブジェクトが返る" do
-          body = JSON.parse(response.body)
+          body = response.parsed_body
           expect(body["kpt"]["date"]).to eq(kpt.date.to_s)
           expect(body["kpt"]["keep"]).to eq(kpt.keep)
           expect(body["kpt"]["problem"]).to eq(kpt.problem)
@@ -101,7 +101,7 @@ RSpec.describe "Kpts", type: :request do
         end
 
         it "エラーメッセージが返る" do
-          expect(JSON.parse(response.body)["message"]).to eq("Not Found")
+          expect(response.parsed_body["message"]).to eq("Not Found")
         end
       end
 
@@ -115,7 +115,7 @@ RSpec.describe "Kpts", type: :request do
         end
 
         it "エラーメッセージが返る" do
-          expect(JSON.parse(response.body)["message"]).to eq("URLが不正です。'/api/v1/kpts/yyyy-mm-dd'形式で指定してください")
+          expect(response.parsed_body["message"]).to eq("URLが不正です。'/api/v1/kpts/yyyy-mm-dd'形式で指定してください")
         end
       end
     end
