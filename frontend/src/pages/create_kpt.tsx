@@ -9,16 +9,10 @@ import {
 import axios, { AxiosResponse, AxiosError } from 'axios'
 import { NextPage } from 'next'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
-
-type CreateKptFormData = {
-  date: string
-  keep: string
-  problem: string
-  try: string
-}
+import { KptData } from './props/props'
 
 const CreateKpt: NextPage = () => {
-  const { handleSubmit, control } = useForm<CreateKptFormData>({
+  const { handleSubmit, control } = useForm<KptData>({
     defaultValues: {
       date: new Date().toISOString().split('T')[0],
       keep: '',
@@ -42,7 +36,7 @@ const CreateKpt: NextPage = () => {
     },
   }
 
-  const onSubmit: SubmitHandler<CreateKptFormData> = (data) => {
+  const onSubmit: SubmitHandler<KptData> = (data) => {
     const url = process.env.NEXT_PUBLIC_API_BASE_URL + '/kpts'
     const headers = {
       'Content-Type': 'application/json',

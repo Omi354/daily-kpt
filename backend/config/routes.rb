@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       get "health_check" => "health_check#show"
       mount_devise_token_auth_for "User", at: "auth"
+
+      get "kpts/:date" => "kpts#show"
       resources :kpts, only: %i[create]
     end
   end
